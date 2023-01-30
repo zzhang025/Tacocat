@@ -54,17 +54,70 @@
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-js">
-                            //Call hello world
-                            function Helloworld(){
-                                alert("hello world");
-                            }
+                            // Controller Function
+
+function getValues(){
+
+    document.getElementById('alert').classList.add('invisible');
+
+    // Obtain string value from the page
+    let inputvalue = document.getElementById("input_string").value;
+
+    // Check for a palindrome
+    let returnObj = wordcheck(inputvalue);
+
+    // Display result
+    display(returnObj);
+}
+// Check if the input is a Palindrome 
+function wordcheck(inputvalue){
+
+    // change to lowercase
+    inputvalue = inputvalue.toLowerCase();
+
+    // remove spaces and special characters
+    let regex = /[^a-z0-9]/gi;
+    inputvalue = inputvalue.replace(regex,"");
+
+    let string=[];
+    let returnObj={};
+    
+    for (let i = inputvalue.length-1; i >= 0; i--) {
+        string += inputvalue[i];
+    } 
+
+    if (string == inputvalue) { 
+        returnObj.msg = "Great Job! You entered a Palindrome"
+    } else {
+        returnObj.msg = "So Close! You entered is not a Palindrome"
+    }
+
+    returnObj.reversed = string;
+    return returnObj;
+}
+
+// Display the result
+function display(returnObj){
+
+     //display the message
+     document.getElementById("alert_heading").innerHTML = returnObj.msg;
+     document.getElementById("msg").innerHTML =`Your phrase reversed is: ${returnObj.reversed}`;
+     document.getElementById("alert").classList.remove('invisible');
+
+}
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "hello world"</p>
+                    <p>The code is structured in several functions.</p>
+                    <br>
+                    <p>First is to get the input values from the user.</p>
+                    <br>
+                    <p>Then, remove symbols and other special characters and make sure the input string is in lowercase.</p>
+                    <br>
+                    <p>Then, loop backwards through the input string, save it and compare it with the original one.</p>
+                    <br>
+                    <p>Then, display the results.</p>
                 </div>
             </div>
         </div>
